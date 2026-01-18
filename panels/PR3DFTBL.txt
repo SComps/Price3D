@@ -1,0 +1,26 @@
+)PANEL
+)ATTR
+  ! TYPE(TEXT) INTENS(HIGH)
+  @ TYPE(OUTPUT) INTENS(LOW)
+  # TYPE(TEXT) INTENS(LOW) SKIP(ON)
+  _ TYPE(INPUT) INTENS(HIGH) CAPS(ON)
+)BODY
+#--- Filament Selection Table -----------------------------------------
+#                                                   # SCROLL ===>_ZAMT
+#
+!NOTE: Use S or E to Edit, D to Delete.
+#
+# S  ITEM ID              TYPE       COLOR      WEIGHT (KG)
+# -- -------------------- ---------- ---------- -----------
+)MODEL
+ _Z @ITEMID               @FTYPE     @FCOLOR    @FWEIGHT
+)INIT
+  .ZVARS = '(SEL)'
+  &ZCMD = ''
+  &ZAMT = 'PAGE'
+  .CURSOR=SEL
+)PROC
+  IF (&ZTDSELS = 1)
+    IF (&SEL ^= ' ')
+      VER(&SEL,LIST,S,E,D,MSG=ISPZ001)
+)END

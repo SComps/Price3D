@@ -1,0 +1,25 @@
+)PANEL
+)ATTR
+  ! TYPE(TEXT) INTENS(HIGH) COLOR(RED)
+  + TYPE(TEXT) INTENS(LOW)
+  _ TYPE(INPUT) INTENS(HIGH) CAPS(ON)
+)BODY
+%----------------------- CONFIRM DELETION -----------------------
+%
+%
+%
++    Are you sure you want to delete this record?
+%
++    Record Details: %&ZCONFMSG
+%
+%
++    Type !YES+to confirm or%PF3/END+to cancel.
+%
+%    ===>_ZCONF
+%
+)INIT
+  .ZVARS = '(ZCONF)'
+  &ZCONF = ''
+)PROC
+  VER (&ZCONF,NB,LIST,YES)
+)END

@@ -1,0 +1,26 @@
+)PANEL
+)ATTR
+  ! TYPE(TEXT) INTENS(HIGH)
+  @ TYPE(OUTPUT) INTENS(LOW)
+  # TYPE(TEXT) INTENS(LOW) SKIP(ON)
+  _ TYPE(INPUT) INTENS(HIGH) CAPS(ON)
+)BODY
+#--- Project Selection Table ------------------------------------------
+#                                                   # SCROLL ===>_ZAMT
+#
+!NOTE: Use S or E to Edit, D to Delete.
+#
+# S  PROJECT NAME                   FILENAME                     GRAMS
+# -- ------------------------------ ---------------------------- -----
+)MODEL
+ _Z @PNAME                          @PFILE                       @PGRAMS
+)INIT
+  .ZVARS = '(SEL)'
+  &ZCMD = ''
+  &ZAMT = 'PAGE'
+  .CURSOR=SEL
+)PROC
+  IF (&ZTDSELS = 1)
+    IF (&SEL ^= ' ')
+      VER(&SEL,LIST,S,E,D,MSG=ISPZ001)
+)END
