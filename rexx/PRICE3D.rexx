@@ -40,6 +40,8 @@ DO FOREVER
      WHEN ZRET='8' THEN CALL NEW_CUST
      when ZRET='9' THEN CALL CUST_REPORT
      WHEN ZRET='C' THEN CALL CUST_TABLE
+     WHEN ZRET='F' THEN CALL FIL_REPORT
+     WHEN ZRET='P' THEN CALL PROJ_REPORT
      WHEN ZRET='X' THEN LEAVE
      WHEN ZRET='x' THEN LEAVE
    OTHERWISE
@@ -602,6 +604,127 @@ IF RC<>0 Then SAY "ALLOCATE RC="RC
   address TSO "EXECIO 0 DISKW" out_dd "(FINIS)"
   address TSO "FREE FI("out_dd")"
   zemsg="CUSTOMER REPORT SENT TO CLASS A PRINTER."
+RETURN 0
+
+
+FIL_REPORT:
+out_dd = "REPORT"
+
+Address TSO "ALLOCATE FI("out_dd") SYSOUT(A)"
+IF RC<>0 Then SAY "ALLOCATE RC="RC
+ /* Initialize Pagination */
+  PAGE_NUM   = 0
+  LINE_COUNT = 99
+  MAX_LINES  = 55
+  TOT_RECS   = 0
+  SQLSTMT="SELECT ITEMID, ITTYPE, ITCOLOR, ITWEIGH, ITREMAIN, ITPURCH FROM SCOTT.FILMNT"
+  CALL SQLEXEC 0,"EXECSQL DECLARE C1 CURSOR FOR S1"
+  CALL SQLEXEC 0,"EXECSQL PREPARE S1 INTO :OUTSQLDA FROM :SQLSTMT"
+  CALL SQLEXEC 0,"EXECSQL OPEN C1"
+
+  do forever
+    CALL SQLEXEC 0,"EXECSQL FETCH C1 USING DESCRIPTOR :OUTSQLDA"
+    if SQLCODE = 100 then leave
+    if SQLCODE < 0 then leave
+
+    ITEMID   = OUTSQLDA.1.SQLDATA
+    FTYPE    = OUTSQLDA.2.SQLDATA
+    FCOLOR   = OUTSQLDA.3.SQLDATA
+    FWEIGHT  = OUTSQLDA.4.SQLDATA
+    FREMAIN  = OUTSQLDA.5.SQLDATA
+    FPRICE   = OUTSQLDA.6.SQLDATA
+
+    if LINE_COUNT + 2 > MAX_LINES then do
+       PAGE_NUM = PAGE_NUM + 1
+
+       out_line.1 = CENTER("FILAMENT INVENTORY REPORT", 80) || "PAGE:" || RIGHT(PAGE_NUM, 3)
+       address TSO "EXECIO 1 DISKW" out_dd "(STEM out_line."
+       out_line.1 = COPIES("-", 100)
+       address TSO "EXECIO 1 DISKW" out_dd "(STEM out_line."
+
+       out_line.1 = LEFT("ITEM ID", 20) || LEFT("TYPE", 8) || LEFT("COLOR", 12) || RIGHT("WEIGHT", 8) || RIGHT("REM(g)", 8) || RIGHT("PRICE", 10)
+       address TSO "EXECIO 1 DISKW" out_dd "(STEM out_line."
+       out_line.1 = COPIES("-", 100)
+       address TSO "EXECIO 1 DISKW" out_dd "(STEM out_line."
+
+       LINE_COUNT = 4
+    end
+
+    out_line.1 = LEFT(ITEMID, 20) || LEFT(FTYPE, 8) || LEFT(FCOLOR, 12) || RIGHT(FWEIGHT, 8) || RIGHT(FREMAIN, 8) || RIGHT(FPRICE, 10)
+    address TSO "EXECIO 1 DISKW" out_dd "(STEM out_line."
+
+    TOT_RECS=TOT_RECS+1
+    LINE_COUNT = LINE_COUNT + 1
+  end
+  out_line.1 = COPIES("=", 100)
+  address TSO "EXECIO 1 DISKW" out_dd "(STEM out_line."
+  out_line.1 = "TOTAL FILAMENTS: " || TOT_RECS
+  address TSO "EXECIO 1 DISKW" out_dd "(STEM out_line."
+
+  /* Use generic cursor close */
+  CALL SQLEXEC 0,"EXECSQL CLOSE C1"
+  address TSO "EXECIO 0 DISKW" out_dd "(FINIS)"
+  address TSO "FREE FI("out_dd")"
+  zemsg="FILAMENT REPORT SENT TO CLASS A PRINTER."
+RETURN 0
+
+PROJ_REPORT:
+out_dd = "REPORT"
+
+Address TSO "ALLOCATE FI("out_dd") SYSOUT(A)"
+IF RC<>0 Then SAY "ALLOCATE RC="RC
+ /* Initialize Pagination */
+  PAGE_NUM   = 0
+  LINE_COUNT = 99
+  MAX_LINES  = 55
+  TOT_RECS   = 0
+  SQLSTMT="SELECT PNAME, PFILE, PGRAMS, PRUNTIME, PCOSTMIN FROM SCOTT.PROJECTS"
+  CALL SQLEXEC 0,"EXECSQL DECLARE C1 CURSOR FOR S1"
+  CALL SQLEXEC 0,"EXECSQL PREPARE S1 INTO :OUTSQLDA FROM :SQLSTMT"
+  CALL SQLEXEC 0,"EXECSQL OPEN C1"
+
+  do forever
+    CALL SQLEXEC 0,"EXECSQL FETCH C1 USING DESCRIPTOR :OUTSQLDA"
+    if SQLCODE = 100 then leave
+    if SQLCODE < 0 then leave
+
+    PNAME    = OUTSQLDA.1.SQLDATA
+    PFILE    = OUTSQLDA.2.SQLDATA
+    PGRAMS   = OUTSQLDA.3.SQLDATA
+    PRUNTIME = OUTSQLDA.4.SQLDATA
+    PCOST    = OUTSQLDA.5.SQLDATA
+
+    if LINE_COUNT + 2 > MAX_LINES then do
+       PAGE_NUM = PAGE_NUM + 1
+
+       out_line.1 = CENTER("PROJECT LISTING REPORT", 80) || "PAGE:" || RIGHT(PAGE_NUM, 3)
+       address TSO "EXECIO 1 DISKW" out_dd "(STEM out_line."
+       out_line.1 = COPIES("-", 100)
+       address TSO "EXECIO 1 DISKW" out_dd "(STEM out_line."
+
+       out_line.1 = LEFT("PROJECT NAME", 20) || LEFT("FILENAME", 20) || RIGHT("GRAMS", 8) || RIGHT("TIME(m)", 8) || RIGHT("COST", 10)
+       address TSO "EXECIO 1 DISKW" out_dd "(STEM out_line."
+       out_line.1 = COPIES("-", 100)
+       address TSO "EXECIO 1 DISKW" out_dd "(STEM out_line."
+
+       LINE_COUNT = 4
+    end
+
+    out_line.1 = LEFT(PNAME, 20) || LEFT(PFILE, 20) || RIGHT(PGRAMS, 8) || RIGHT(PRUNTIME, 8) || RIGHT(PCOST, 10)
+    address TSO "EXECIO 1 DISKW" out_dd "(STEM out_line."
+
+    TOT_RECS=TOT_RECS+1
+    LINE_COUNT = LINE_COUNT + 1
+  end
+  out_line.1 = COPIES("=", 100)
+  address TSO "EXECIO 1 DISKW" out_dd "(STEM out_line."
+  out_line.1 = "TOTAL PROJECTS: " || TOT_RECS
+  address TSO "EXECIO 1 DISKW" out_dd "(STEM out_line."
+
+  CALL SQLEXEC 0,"EXECSQL CLOSE C1"
+  address TSO "EXECIO 0 DISKW" out_dd "(FINIS)"
+  address TSO "FREE FI("out_dd")"
+  zemsg="PROJECT REPORT SENT TO CLASS A PRINTER."
 RETURN 0
 
 

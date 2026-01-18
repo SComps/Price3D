@@ -12,10 +12,12 @@ $  TYPE(INPUT) INTENS(LOW) HILITE(USCORE) COLOR(WHITE) CAPS(OFF)
           |FILAMENT SPOOLS:
                <1|Filament Entry/Edit+
                <2|Filament Table+
+               <F|Print Filament List+
 
           |PROJECTS:
                <3|Project Entry/Edit+
                <4|Project Table+
+               <P|Print Project List+
 
           |JOBS:
                <5|Enter a new job+
