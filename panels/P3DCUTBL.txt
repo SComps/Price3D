@@ -1,0 +1,26 @@
+)PANEL
+)ATTR
+  ! TYPE(TEXT) INTENS(HIGH)
+  @ TYPE(OUTPUT) INTENS(LOW)
+  # TYPE(TEXT) INTENS(LOW) SKIP(ON)
+  _ TYPE(INPUT) INTENS(HIGH) CAPS(ON)
+)BODY
+#--- Customer Selection Table -----------------------------------------
+#                                                   # SCROLL ===>_ZAMT
+#
+!NOTE: Only the first line command entered (S, E, or D) will be processed.
+#
+# S  ID         NAME                          CITY            ST
+# -- ---------- ----------------------------- --------------- --
+)MODEL
+ _Z @CUSTID    @CNAME                        @CITY           @ST
+)INIT
+  .ZVARS = '(SEL)'
+  &ZCMD = ''
+  &ZAMT = 'PAGE'
+  .CURSOR=SEL
+)PROC
+  IF (&ZTDSELS = 1)
+    IF (&SEL ^= ' ')
+      VER(&SEL,LIST,S,E,D,MSG=ISPZ001)
+)END

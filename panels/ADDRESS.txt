@@ -1,0 +1,35 @@
+)ATTR
+  % TYPE(TEXT) INTENS(HIGH)
+  + TYPE(TEXT) INTENS(LOW)
+  _ TYPE(INPUT) CAPS(ON)
+  $ TYPE(INPUT) INTENS(NON)
+  ? TYPE(TEXT) INTENS(HIGH) COLOR(TURQ)
+)BODY
+?===ADDRESS MAINTENANCE=========================================================
++Command ===> _Z                                                               +
+
+   Name:              _Z                                      +
+
+   Address Line 1:    _Z                                      +
+
+   Address Line 2:    _Z                                      +
+
+   City: _Z                   +State: _Z+             Zip Code: _Z            +
+
+   Phone:             _Z                  +
+
+   Email:             _Z                                                      +
+
+
+   Enter the address information and press %ENTER+ or %PFK3+ to exit.
+
+
+
+
+
+
+
+)INIT
+  .ZVARS = '(ACMD NAME ADDR1 ADDR2 CITY F1039 ZIP PHONE EMAIL)'
+)PROC
+)END

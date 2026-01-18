@@ -1,0 +1,39 @@
+)ATTR
+<  TYPE(TEXT) INTENS(HIGH) COLOR(YELLOW)
++  TYPE(TEXT) INTENS(LOW)
+|  TYPE(TEXT) INTENS(HIGH) COLOR(TURQ)
+$  TYPE(INPUT) INTENS(LOW) HILITE(USCORE) COLOR(WHITE) CAPS(OFF)
+#  TYPE(OUTPUT) INTENS(HIGH) COLOR(RED)
+)BODY DEFAULT(*;^)
+<==FILAMENT MAINTENANCE SYSTEM===============================================+
+#ZEMSG
+
+
+          |FILAMENT SPOOLS:
+               <1|Enter new +
+               <2|Update+
+
+          |PROJECTS:
+               <3|Enter new+
+               <4|Update+
+
+          |JOBS:
+               <5|Enter a new job+
+               <6|Update a job+
+               <7|Process jobs/update spools+
+
+         |CUSTOMERS:
+               <8|Customer Entry/edit+
+               <9|Print customer list+
+
+          <X|Exit+
+
+          |Option ===>$Z +
+
+          <C|Customer Table+
+)INIT
+   .ZVARS = '(ZRET)'
+   .HELP = P3DHELP
+)PROC
+
+)END

@@ -1,0 +1,36 @@
+)ATTR
+<  TYPE(TEXT) INTENS(HIGH) COLOR(YELLOW)
++  TYPE(TEXT) INTENS(LOW)
+|  TYPE(TEXT) INTENS(HIGH) COLOR(TURQ)
+$  TYPE(INPUT) INTENS(LOW) HILITE(USCORE) COLOR(WHITE) CAPS(ON)
+*  TYPE(TEXT) INTENS(HIGH)
+#  TYPE(OUTPUT) INTENS(HIGH) COLOR(RED)
+)BODY DEFAULT(;^/)
+<=FILAMENT SPOOL INFORMATION===================================================+
+#ZFMSG                                                                         +
+
+        |Item|ID:$Z                   +
+
+           |Type:$Z         +            |Color:$Z         +
+
+      |Weight|KG:$Z    +
+
+     |Grams|used:$Z         +        |Remaining:$Z         +
+
+ |Purchase|price:$Z              +
+
+         |Vendor:$Z                             +
+
+ |Vendor|Item|ID:$Z              +
+
+  |Re-order|link:*(Below)+
+ $Z                                                                     +
+
+  |Last|Purch|Dt:$Z         +
+)INIT
+   .ZVARS = '(ITEMID   FTYPE    FCOLOR   FWEIGHT  FUSED    FREMAINS FPRICE   +
+              FVENDOR  FVENDID  FLINK    FPURCHDT)'
+   .CURSOR = ITEMID
+)REINIT
+   .CURSOR = ITEMID
+)END

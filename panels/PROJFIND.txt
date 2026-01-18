@@ -1,0 +1,31 @@
+)ATTR
+<  TYPE(TEXT) INTENS(HIGH) COLOR(YELLOW)
++  TYPE(TEXT) INTENS(LOW)
+|  TYPE(TEXT) INTENS(HIGH) COLOR(TURQ)
+$  TYPE(INPUT) INTENS(LOW) HILITE(USCORE) COLOR(WHITE) CAPS(OFF)
+)BODY DEFAULT(*;^)
+<=PROJECT MAINTENANCE===========================================================
++
+
+
+|Project Name:+$Z                             +
+
+    |Filename:+                                                   +
+
+    |Run time:+         +(minutes)
+
+ |Cost-Minute:+       +
+
+  |Markup Pct:+     +%
+
+    |Filament:+                     +
+
+  |Grams used:+           +
+
+
+
+  |Type the name of the project you want to view/edit and press ENTER +
+  |otherwise press PFK3 to cancel.
+)INIT
+   .ZVARS = '(PROJEDIT)'
+)END

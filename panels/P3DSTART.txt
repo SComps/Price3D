@@ -1,0 +1,33 @@
+)ATTR
+#  TYPE(TEXT) INTENS(HIGH) COLOR(YELLOW)
++  TYPE(TEXT) INTENS(LOW)
+|  TYPE(TEXT) INTENS(HIGH) COLOR(TURQ)
+_  TYPE(INPUT) INTENS(LOW) CAPS(OFF)
+)BODY DEFAULT($*;)
++
+
+      #PPPPPPPPPPPPPPPPP+  #333333333333333+ #DDDDDDDDDDDDD+
+      #P::::::::::::::::P+#3:::::::::::::::33#D::::::::::::DDD+
+      #P::::::PPPPPP:::::P#3::::::33333::::::3D:::::::::::::::DD+
+      #PP:::::P+   #P:::::P3333333+   #3:::::3DDD:::::DDDDD:::::D+
+        #P::::P+   #P:::::P+          #3:::::3+#D:::::D+  #D:::::D+
+        #P::::P+   #P:::::P+          #3:::::3+#D:::::D+   #D:::::D+
+        #P::::PPPPPP:::::P+   #33333333:::::3+ #D:::::D+   #D:::::D+
+        #P:::::::::::::PP+    #3:::::::::::3+  #D:::::D+   #D:::::D+
+        #P::::PPPPPPPPP+      #33333333:::::3+ #D:::::D+   #D:::::D+
+        #P::::P+                      #3:::::3+#D:::::D+   #D:::::D+
+        #P::::P+                      #3:::::3+#D:::::D+   #D:::::D+
+        #P::::P+                      #3:::::3+#D:::::D+  #D:::::D+
+      #PP::::::PP+        #3333333+   #3:::::3DDD:::::DDDDD:::::D+
+      #P::::::::P+        #3::::::33333::::::3D:::::::::::::::DD+
+      #P::::::::P+        #3:::::::::::::::33#D::::::::::::DDD+
+      #PPPPPPPPPP+         #333333333333333+ #DDDDDDDDDDDDD+
+
+         |Filament|information|system|for|3D|printing|filament+
+         |@ScottJ|@Rudi|(2025)|for|zOS|and|DB2 +
+
+         |Press #ENTER |to begin or PF3 to|quit +
+         _Z +
+)INIT
+   .ZVARS = '(ZWAIT   )'
+)END

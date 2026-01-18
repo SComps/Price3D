@@ -1,0 +1,31 @@
+)ATTR
+<  TYPE(TEXT) INTENS(HIGH) COLOR(YELLOW)
++  TYPE(TEXT) INTENS(LOW)
+|  TYPE(TEXT) INTENS(HIGH) COLOR(TURQ)
+$  TYPE(INPUT) INTENS(LOW) HILITE(USCORE) COLOR(WHITE) CAPS(OFF)
+)BODY DEFAULT(*;^)
+<=PROJECT MAINTENANCE===========================================================
++
+
+
+|Project Name:+$Z                             +
+
+    |Filename:+$Z                                                 +
+
+    |Run time:+$Z       +(minutes)
+
+ |Cost-Minute:+$Z     +
+
+  |Markup Pct:+$Z   +%
+
+    |Filament:+$Z                   +
+
+  |Grams used:+$Z         +
+
+
+
+  |This form does not update filament|records | Use the process job+
+  |option from the|menu +
+)INIT
+   .ZVARS = '(PNAME    PFILE    PRUNTIME PCOSTMIN PMARKUP  PFIL     PGRAMS  )'
+)END

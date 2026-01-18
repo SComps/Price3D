@@ -1,0 +1,32 @@
+)ATTR DEFAULT(%+_)
+  _ TYPE(INPUT) INTENS(HIGH) CAPS(OFF)
+  ! TYPE(INPUT) INTENS(HIGH) CAPS(OFF) COLOR(WHITE)
+  $ TYPE(OUTPUT) INTENS(HIGH) CAPS(OFF) COLOR(WHITE)
+)BODY
+%----------------------- CUSTOMER INFORMATION ENTRY -----------------------
+%COMMAND ===>_ZCMD
+%
+%
++    Customer ID: $Z       +
+%
++      Full Name: !Z                                       +
+%
++        Address: !Z                                       +
++               : !Z                                       +
+%
++           City: !Z                   +  State: !Z +  Zip: !Z    +
+%
++          Phone: !Z                +
+%
++          Email: !Z                                       +
+%
+%
+%      Press ENTER to save or PF3/END to cancel.
+)INIT
+  .ZVARS = '(CUSTID CNAME ADDR1 ADDR2 CITY ST ZIP PHONE EMAIL)'
+  .CURSOR = CNAME
+)PROC
+  VER (&CUSTID,NB,LEN,LE,8)
+  VER (&CNAME,NB)
+  VER (&ST,LEN,EQ,2)
+)END

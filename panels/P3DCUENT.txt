@@ -1,0 +1,29 @@
+)ATTR DEFAULT(%+_)
+  _ TYPE(INPUT) INTENS(HIGH) CAPS(ON)
+  ! TYPE(INPUT) INTENS(HIGH) CAPS(OFF)
+)BODY
+%----------------------- CUSTOMER INFORMATION ENTRY -----------------------
+%COMMAND ===>_ZCMD
+%
+%
++    Customer ID: _Z       +
+%
++      Full Name: !Z                                       +
+%
++        Address: !Z                                       +
++               : !Z                                       +
+%
++           City: !Z                   +  State: _Z +  Zip: _Z    +
+%
++          Phone: _Z                +
+%
++          Email: !Z                                       +
+%
+%
+%      ENTER Customer ID or PF3/END to cancel.
+)INIT
+  .ZVARS = '(CUSTID CNAME ADDR1 ADDR2 CITY ST ZIP PHONE EMAIL)'
+  .RESP= ENTER
+)PROC
+  VER (&CUSTID,NB,LEN,LE,8)
+)END

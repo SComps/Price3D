@@ -1,0 +1,32 @@
+)ATTR
+<  TYPE(TEXT) INTENS(HIGH) COLOR(YELLOW)
++  TYPE(TEXT) INTENS(LOW)
+|  TYPE(TEXT) INTENS(HIGH) COLOR(TURQ)
+$  TYPE(INPUT) INTENS(LOW) HILITE(USCORE) COLOR(WHITE) CAPS(OFF)
+*  TYPE(TEXT) INTENS(HIGH)
+)BODY DEFAULT(;^/)
+<=FILAMENT SPOOL INFORMATION===================================================+
+
+        |Item|ID:$Z                   +
+
+           |Type:           +            |Color:           +
+
+      |Weight|KG:      +
+
+     |Grams|used:           +        |Remaining:           +
+
+ |Purchase|price:                +
+
+         |Vendor:                               +
+
+ |Vendor|Item|ID:                +
+
+  |Re-order|link:*(Below)+
+                                                                        +
+
+  |Last|Purch|Dt:           +
+
+  |Type the Item ID you want to view and edit or press PFK3 to cancel+
+)INIT
+   .ZVARS = '(ITEMID)'
+)END

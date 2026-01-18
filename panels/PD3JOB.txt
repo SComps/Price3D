@@ -1,0 +1,29 @@
+)PANEL
+)ATTR
+¢  TYPE(TEXT) INTENS(HIGH) COLOR(TURQ)
+<  TYPE(TEXT) INTENS(LOW)
+_  TYPE(INPUT) INTENS(LOW) CAPS(OFF)
+)BODY DEFAULT((+|)
+<==JOB DATA================================================================
+
+         ¢JOB ID:<_Z         <
+
+¢JOB DESCRIPTION:<_Z                                       <
+                  _Z                                       <
+
+       ¢FILAMENT:<_Z                   <
+
+          ¢GRAMS:<_Z         <   ¢RUN TIME:<_Z         <
+
+    ¢CUSTOMER ID:<_Z                   <
+           ¢NAME:<_Z                             <
+        ¢ADDRESS:<_Z                                       <
+                  _Z                                       <
+
+       ¢DATE RUN:<_Z              <
+
+    _Z<¢PROCESSED<
+)INIT
+   .ZVARS = '(JOBID    JDESC1   JDESC2   JFIL     JGRAMS   JRT      JCUSTID  +
+              JCNAME   JCADDR1  JCADDR2  JDATE    JPROC   )'
+)END
