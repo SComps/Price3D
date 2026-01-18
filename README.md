@@ -1,6 +1,5 @@
 # Price3D
-
-A new project for 3D pricing analysis/visualization.
+REXX/ISPF/DB2 application for 3D pricing analysis/visualization.
 
 ## Project Structure
 
