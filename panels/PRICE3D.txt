@@ -10,12 +10,12 @@ $  TYPE(INPUT) INTENS(LOW) HILITE(USCORE) COLOR(WHITE) CAPS(OFF)
 
 
           |FILAMENT SPOOLS:
-               <1|Enter new +
-               <2|Update+
+               <1|Filament Entry/Edit+
+               <2|Filament Table+
 
           |PROJECTS:
-               <3|Enter new+
-               <4|Update+
+               <3|Project Entry/Edit+
+               <4|Project Table+
 
           |JOBS:
                <5|Enter a new job+
@@ -23,14 +23,14 @@ $  TYPE(INPUT) INTENS(LOW) HILITE(USCORE) COLOR(WHITE) CAPS(OFF)
                <7|Process jobs/update spools+
 
          |CUSTOMERS:
-               <8|Customer Entry/edit+
-               <9|Print customer list+
+               <8|Customer Entry/Edit+
+               <9|Print Customer List+
+               <C|Customer Table+
 
           <X|Exit+
 
           |Option ===>$Z +
 
-          <C|Customer Table+
 )INIT
    .ZVARS = '(ZRET)'
    .HELP = P3DHELP
